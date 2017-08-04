@@ -2,13 +2,10 @@
 Feature: Using Contact Form
  To test the functionality of contact form
 
- Background:
-  Given I am on Home Page of "http://room5.trivago.com/"
-  And I click OK on Cookies Popup
-  And I click on Contact in Footer
-
   Scenario Outline: Filling contact form
-   And I enter message as "<message>"
+   Given I am on Home Page of "http://room5.trivago.com/contact/"
+   And Dismiss cookies popup
+   When I enter message as "<message>"
    And I enter full name as "<fullname>"
    And I enter email as "<email>"
    And I click on Submit button
