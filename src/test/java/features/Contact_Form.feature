@@ -8,5 +8,15 @@ Feature: Using Contact Form
   And I click on Contact in Footer
   Then I'm taken to Contact Page
 
-  Scenario: # Enter scenario name here
-    # Enter steps here
+  Scenario Outline: Filling contact form
+   And I enter message as "<message>"
+   And I enter full name as "<fullname>"
+   And I enter email as "<email>"
+   And I click on Submit button
+   Then I see success message
+   Examples:
+   |message|fullname|email|
+   |just some gibberish message|Ashish Deshmukh|ashish@deshmukh.com|
+   | |Ashish Deshmukh|ashish@deshmukh.com|
+   |just some givverish message| |ashish@deshmukh.com|
+   |just some gibberish message|Ashish Deshmukh| |

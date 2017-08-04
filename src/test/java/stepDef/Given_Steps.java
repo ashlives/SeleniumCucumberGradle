@@ -1,10 +1,13 @@
 package stepDef;
 
+import cucumber.api.DataTable;
 import cucumber.api.java.en.Given;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pageObjectModels.CookiesNoticePageObjectModel;
 import pageObjectModels.FooterPageObjectModel;
+
+import java.util.List;
 
 public class Given_Steps {
 
@@ -31,4 +34,5 @@ public class Given_Steps {
         objCookies = new CookiesNoticePageObjectModel(driver);
         objCookies.acceptCookies();
     }
+
 }
