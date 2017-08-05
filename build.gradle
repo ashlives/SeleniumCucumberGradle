@@ -2,10 +2,40 @@ group 'com.seleniumtestcucumber.mytest'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
+apply plugin: 'idea'
 
+configurations {
+    cucumberRuntime.extendsFrom testRuntime
+}
+
+sourceSets{
+    test{
+        java{
+            srcDir 'test'
+        }
+    }
+}
+
+task cucumber() {
+    dependsOn assemble, compileTestJava
+    doLast {
+        javaexec {
+            main = "cucumber.api.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = ['--plugin', 'pretty', '--glue', 'stepDef', 'src/test/java']
+        }
+    }
+}
+
+task hello{
+    doLast{
+        println 'Helllo'
+    }
+}
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 dependencies {
@@ -18,13 +48,7 @@ dependencies {
     // https://mvnrepository.com/artifact/info.cukes/cucumber-java
     compile group: 'info.cukes', name: 'cucumber-java', version: '1.2.5'
 
-
 }
 
-/*
-test {
-    useTestNG() {
-        suites 'TestNG.xml'
 
-    }
-}*/
+
